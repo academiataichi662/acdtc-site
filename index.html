@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACDTC – Academia Tai-Chi | Fei Hok Phai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ───────────── RESET & BASE ───────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #000;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    /* ───────────── VARIÁVEIS ───────────── */
+    :root {
+      --red:    #E62E2C;
+      --black:  #000000;
+      --white:  #FFFFFF;
+      --gold:   #DBB902;
+      --dark-red: #B82523;
+    }
+
+    /* ───────────── UTILITÁRIOS ───────────── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 90px 0; }
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: #444;
+      max-width: 640px;
+      margin: 0 auto 56px;
+      font-size: 0.95rem;
+    }
+    .gold-bar {
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--gold);
+      margin: 12px auto 0;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity .2s, transform .2s;
+    }
+    .btn:hover { opacity: .85; transform: translateY(-2px); }
+    .btn-red   { background: var(--red); color: #fff; }
+    .btn-gold  { background: var(--gold); color: #000; }
+    .btn-outline { border: 2px solid #fff; color: #fff; background: transparent; }
+
+    /* ───────────── NAV ───────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--black);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.4);
+    }
+    .nav-logo {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      font-family: 'Poppins', sans-serif;
+      transition: color .2s;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--red);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: 4px;
+    }
+    .nav-cta:hover { background: var(--dark-red); color: #fff !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: .3s; }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--black);
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      padding: 24px;
+      z-index: 999;
+      gap: 16px;
+    }
+    .mobile-menu a {
+      color: #ccc; text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600; font-size: 0.95rem;
+      text-transform: uppercase;
+      border-bottom: 1px solid #222;
+      padding-bottom: 12px;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu.open { display: flex; }
+
+    /* ───────────── HERO ───────────── */
+    #hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(230,46,44,.12) 0%, transparent 70%);
+    }
+    /* Garça decorativa SVG bg */
+    #hero::after {
+      content: '飛鶴派';
+      position: absolute;
+      font-size: 18vw;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      color: rgba(255,255,255,.03);
+      pointer-events: none;
+      letter-spacing: -4px;
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 780px; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+    .hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; }
+    .hero-subtitle {
+      color: #aaa;
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-chars {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 64px;
+      border-top: 1px solid #222;
+      padding-top: 40px;
+    }
+    .hero-char { text-align: center; }
+    .hero-char strong {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: var(--gold);
+    }
+    .hero-char span { color: #777; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ───────────── SOBRE ───────────── */
+    #sobre { background: #fff; }
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .sobre-img-box {
+      background: var(--black);
+      border-radius: 8px;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .sobre-img-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--dark-red) 0%, var(--black) 100%);
+      opacity: .7;
+    }
+    .sobre-img-char {
+      position: relative;
+      z-index: 1;
+      font-size: 8rem;
+      color: rgba(255,255,255,.15);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      line-height: 1;
+      text-align: center;
+      padding: 24px;
+    }
+    .sobre-img-label {
+      position: absolute;
+      bottom: 24px; left: 24px; right: 24px;
+      z-index: 2;
+      background: var(--gold);
+      color: #000;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 10px 16px;
+      border-radius: 4px;
+      text-align: center;
+      letter-spacing: .5px;
+    }
+    .sobre-text .tag {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+      display: block;
+    }
+    .sobre-text h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.9rem;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    .sobre-text p { color: #444; margin-bottom: 16px; font-size: 0.95rem; }
+    .sobre-text .highlight {
+      border-left: 4px solid var(--gold);
+      padding-left: 16px;
+      color: #222;
+      font-style: italic;
+      margin: 24px 0;
+      font-size: 0.95rem;
+    }
+    .sobre-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .pillar {
+      background: #f5f5f5;
+      border-radius: 6px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--red);
+    }
+    .pillar strong {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .pillar span { font-size: 0.78rem; color: #666; }
+
+    /* ───────────── HISTÓRIA ───────────── */
+    #historia { background: #0a0a0a; color: #fff; }
+    #historia .section-title { color: #fff; }
+    #historia .section-subtitle { color: #888; }
+    .timeline { position: relative; max-width: 760px; margin: 0 auto; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 28px; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--red));
+    }
+    .tl-item {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 48px;
+      padding-left: 0;
+    }
+    .tl-dot {
+      flex-shrink: 0;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 3px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-align: center;
+      line-height: 1.2;
+      z-index: 1;
+    }
+    .tl-content {
+      background: #151515;
+      border-radius: 8px;
+      padding: 20px 24px;
+      border: 1px solid #222;
+      flex: 1;
+    }
+    .tl-content h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .tl-content p { color: #aaa; font-size: 0.88rem; line-height: 1.65; }
+
+    /* ───────────── FEI HOK PHAI ───────────── */
+    #estilo { background: #fff; }
+    .estilo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 16px;
+    }
+    .estilo-card {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: box-shadow .3s, transform .3s;
+    }
+    .estilo-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.1); transform: translateY(-4px); }
+    .estilo-card .icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.6rem;
+    }
+    .estilo-card h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .estilo-card p { font-size: 0.88rem; color: #555; line-height: 1.65; }
+
+    /* ───────────── ACDTC ───────────── */
+    #acdtc {
+      background: var(--red);
+      color: #fff;
+    }
+    .acdtc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    #acdtc .section-title { color: #fff; text-align: left; }
+    #acdtc .section-title .gold-bar { margin: 12px 0 0; }
+    .acdtc-text p { color: rgba(255,255,255,.85); margin-bottom: 16px; font-size: 0.95rem; }
+    .acdtc-facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .acdtc-fact {
+      background: rgba(0,0,0,.2);
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .acdtc-fact strong {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .acdtc-fact span { font-size: 0.82rem; color: rgba(255,255,255,.7); }
+
+    /* ───────────── FRASES ───────────── */
+    #frases { background: #f9f9f9; }
+    .frases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .frase-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 32px 24px;
+      border-top: 4px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+    .frase-card .quote-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      line-height: 1;
+      font-family: Georgia, serif;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .frase-card p {
+      font-style: italic;
+      color: #333;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .frase-card .author {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--red);
+      letter-spacing: .5px;
+    }
+
+    /* ───────────── CONTATO ───────────── */
+    #contato { background: var(--black); color: #fff; }
+    #contato .section-title { color: #fff; }
+    #contato .section-subtitle { color: #888; }
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contato-info h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 24px;
+      color: var(--gold);
+    }
+    .contato-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .contato-item-icon {
+      width: 44px; height: 44px;
+      border-radius: 8px;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contato-item-text strong {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .contato-item-text span { font-size: 0.88rem; color: #888; }
+    .contato-item-text a { color: #888; text-decoration: none; }
+    .contato-item-text a:hover { color: var(--gold); }
+    .dia-int {
+      background: linear-gradient(135deg, var(--dark-red), var(--red));
+      border-radius: 10px;
+      padding: 28px;
+      margin-top: 32px;
+      text-align: center;
+    }
+    .dia-int strong {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .dia-int p { font-size: 0.85rem; color: rgba(255,255,255,.85); }
+    /* Form */
+    .contato-form { }
+    .contato-form h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 24px;
+      color: var(--gold);
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 6px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group select option { background: #111; }
+
+    /* ───────────── FOOTER ───────────── */
+    footer {
+      background: #000;
+      border-top: 1px solid #1a1a1a;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    footer p { color: #555; font-size: 0.82rem; }
+    footer strong { color: var(--gold); }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: #555;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ───────────── RESPONSIVE ───────────── */
+    @media (max-width: 900px) {
+      .sobre-grid, .acdtc-grid, .contato-grid { grid-template-columns: 1fr; gap: 40px; }
+      .estilo-grid { grid-template-columns: 1fr 1fr; }
+      .frases-grid { grid-template-columns: 1fr; }
+      .sobre-pillars { grid-template-columns: 1fr; }
+      .sobre-img-box { aspect-ratio: 3/2; }
+      .acdtc-facts { grid-template-columns: 1fr 1fr; }
+      #acdtc .section-title { text-align: center; }
+      #acdtc .section-title .gold-bar { margin: 12px auto 0; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .estilo-grid { grid-template-columns: 1fr; }
+      .acdtc-facts { grid-template-columns: 1fr; }
+      .hero-chars { flex-direction: column; gap: 16px; }
+      .timeline::before { left: 20px; }
+      .tl-dot { width: 42px; height: 42px; font-size: 0.65rem; }
+      .section { padding: 60px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <div class="nav-logo">ACDTC <span>飛鶴派</span></div>
+    <ul class="nav-links">
+      <li><a href="#sobre">A Associação</a></li>
+      <li><a href="#historia">História</a></li>
+      <li><a href="#estilo">O Estilo</a></li>
+      <li><a href="#frases">Mestre Lope</a></li>
+      <li><a href="#contato" class="nav-cta">Contato</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre"    onclick="toggleMenu()">A Associação</a>
+    <a href="#historia" onclick="toggleMenu()">História</a>
+    <a href="#estilo"   onclick="toggleMenu()">O Estilo</a>
+    <a href="#frases"   onclick="toggleMenu()">Mestre Lope</a>
+    <a href="#contato"  onclick="toggleMenu()">Contato</a>
+  </div>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="hero-badge">Primeira Academia de Kung Fu registrada do Brasil</span>
+      <h1 class="hero-title">
+        Guardiões de um<br><em>legado milenar</em>
+      </h1>
+      <p class="hero-subtitle">
+        A Associação Cultural Desportiva Tai-Chi Chiu Ping Lok preserva e transmite o Estilo da Garça Voadora — o Fei Hok Phai — com fidelidade, respeito e acolhimento.
+      </p>
+      <div class="hero-btns">
+        <a href="#sobre"   class="btn btn-gold">Conheça a ACDTC</a>
+        <a href="#contato" class="btn btn-outline">Fale Conosco</a>
+      </div>
+      <div class="hero-chars">
+        <div class="hero-char"><strong>1969</strong><span>Fundação da Academia</span></div>
+        <div class="hero-char"><strong>55+</strong><span>Anos de tradição</span></div>
+        <div class="hero-char"><strong>8 AGO</strong><span>Dia Internacional Fei Hok Phai</span></div>
+        <div class="hero-char"><strong>+11</strong><span>Mestres formados</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOBRE ─── -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-img-box">
+          <div class="sobre-img-char">飛<br>鶴<br>派</div>
+          <div class="sobre-img-label">Fei Hok Phai · Estilo da Garça Voadora</div>
+        </div>
+        <div class="sobre-text">
+          <span class="tag">Quem somos</span>
+          <h2>Uma associação nascida para preservar um legado</h2>
+          <p>
+            A <strong>ACDTC – Associação Cultural Desportiva Tai-Chi Chiu Ping Lok</strong> foi fundada em 2023 por discípulos diretos, mestres, professores e alunos fiéis ao estilo Fei Hok Phai do Grão-Mestre Chiu Ping Lok, o Mestre Lope.
+          </p>
+          <p>
+            Nosso principal objetivo é fortalecer a conexão entre os praticantes do estilo, garantindo que seus ensinamentos sejam transmitidos com fidelidade para as próximas gerações — exatamente como o Grão-Mestre sempre prezou.
+          </p>
+          <blockquote class="highlight">
+            "Uma disciplina milenar e testada pelo tempo como o Kung Fu não pode ser tratada como mercadoria." — Grão-Mestre Chiu Ping Lok
+          </blockquote>
+          <p>
+            Aqui cultivamos muito mais do que habilidades marciais. Cultivamos valores que transformam vidas.
+          </p>
+          <div class="sobre-pillars">
+            <div class="pillar"><strong>Educação e Cortesia</strong><span>No tatame e na vida</span></div>
+            <div class="pillar"><strong>Esforço e Dedicação</strong><span>Em cada movimento</span></div>
+            <div class="pillar"><strong>Humildade</strong><span>O verdadeiro saber</span></div>
+            <div class="pillar"><strong>Respeito</strong><span>Aos mestres e à tradição</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HISTÓRIA ─── -->
+  <section id="historia" class="section">
+    <div class="container">
+      <h2 class="section-title">A história por trás do estilo<span class="gold-bar"></span></h2>
+      <p class="section-subtitle">Uma vida dedicada à arte marcial chinesa, da China ao Brasil.</p>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot">1938</div>
+          <div class="tl-content">
+            <h3>O início de uma jornada</h3>
+            <p>Chiu Ping Lok nasce na província de Cantão, ao sul da China, em 15 de maio. Aos 4 anos, já iniciava sua prática de Kung Fu com seu tio Sam-Mu, enquanto o distrito financiava instrutores para ensinar toda a comunidade.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">1953</div>
+          <div class="tl-content">
+            <h3>Hong Kong e a grande formação</h3>
+            <p>Aos 15 anos, a família se muda para Hong Kong, onde o jovem Chiu Ping Lok aprofunda-se no Tai Chi Chuan, aprende acupuntura com o Mestre Hui e Yoga com um grupo hindu. Treina com grandes nomes como Lam Fei Hung (Ti Tao Hung) e Hui Mil Sin, enriquecendo sua formação com estilos do sul da China.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">1961</div>
+          <div class="tl-content">
+            <h3>A chegada ao Brasil</h3>
+            <p>Com 24 anos, Chiu Ping Lok desembarca no Brasil a caminho dos Estados Unidos. O calor humano do povo brasileiro o conquista. Em meados de 1963, já ministrava aulas de Kung Fu no Centro Social Chinês de São Paulo, para grupos de até 7 ou 8 brasileiros — os primeiros passos de uma história única.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">1969</div>
+          <div class="tl-content">
+            <h3>A primeira academia de Kung Fu do Brasil</h3>
+            <p>É inaugurada a Academia Tai Chi Yoga e Kung Fu, na Rua Catequese, 72, em Santo André — SP. A <strong>primeira academia de Kung Fu registrada do país</strong>, onde o Grão-Mestre também introduziu o Fei Hok Phai como estilo oficial, compilando o melhor das técnicas que aprendera.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">1980</div>
+          <div class="tl-content">
+            <h3>Um lar definitivo em Santo André</h3>
+            <p>A Academia é transferida para o endereço atual: Rua Santo André, 662 – Vila Assunção, Santo André. O prédio, concluído em 1984, tornou-se o coração do Fei Hok Phai no Brasil.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">2009</div>
+          <div class="tl-content">
+            <h3>O legado que nunca para</h3>
+            <p>Em 22 de agosto, o Grão-Mestre Chiu Ping Lok parte. Antes, em 8 de agosto — data que se tornaria o <strong>Dia Internacional do Fei Hok Phai</strong> — ele assistiu orgulhosamente à última apresentação de seus discípulos. Desde então, a tradição é mantida viva por seus mestres e alunos.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot">2023</div>
+          <div class="tl-content">
+            <h3>Nasce a ACDTC</h3>
+            <p>Discípulos diretos, mestres e professores fundam a Associação Cultural Desportiva Tai-Chi Chiu Ping Lok (ACDTC), com CNPJ 53.020.709/0001-15, para institucionalizar a preservação e transmissão fiel do estilo Fei Hok Phai às futuras gerações.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ESTILO ─── -->
+  <section id="estilo" class="section">
+    <div class="container">
+      <h2 class="section-title">O Fei Hok Phai<span class="gold-bar"></span></h2>
+      <p class="section-subtitle">
+        飛鶴派 — Estilo (Phai) da Garça (Hok) Voadora (Fei). Uma arte marcial que une técnicas internas e externas, elegância e eficácia.
+      </p>
+      <div class="estilo-grid">
+
+        <div class="estilo-card">
+          <div class="icon">🦢</div>
+          <h3>A Garça em Vôo</h3>
+          <p>O nome liga-se diretamente à imagem de uma garça em vôo. Assim como a ave, o Mestre Lope veio de longe carregando sementes que floresceram no Brasil, onde o estilo cresceu e se desenvolveu.</p>
+        </div>
+
+        <div class="estilo-card">
+          <div class="icon">⚡</div>
+          <h3>Técnicas e Origens</h3>
+          <p>A base do Fei Hok Phai é formada por cinco técnicas: Hung Tao Choy Mey Gar, Hung Gar, Mo Gar, Tai Chi Chuan Yang Gar e Noi Kun — todas do sul da China — além do Hatha Yoga.</p>
+        </div>
+
+        <div class="estilo-card">
+          <div class="icon">☯️</div>
+          <h3>Interno e Externo</h3>
+          <p>O estilo carrega características da escola interna Nei-Chia e da escola externa Wai-Chia, unindo a força da expressão física com o cultivo da energia interior.</p>
+        </div>
+
+        <div class="estilo-card">
+          <div class="icon">🥋</div>
+          <h3>Os Katis</h3>
+          <p>Sequências como o Lin Pou Chuan, Hok Chuan, Tan Tui Chuan e Pou San Chuan estruturam o aprendizado progressivo do praticante, do básico ao avançado.</p>
+        </div>
+
+        <div class="estilo-card">
+          <div class="icon">🐅</div>
+          <h3>Armas Tradicionais</h3>
+          <p>O estilo inclui o Kwan (bastão), o Fuk Fu Tou (facão), a Tan Tau Chin (lança de uma ponta) e outras armas, cada uma com sua história e técnica refinada ao longo de séculos.</p>
+        </div>
+
+        <div class="estilo-card">
+          <div class="icon">🙏</div>
+          <h3>O Cumprimento da Garça</h3>
+          <p>O Fei Hok Phai cumprimenta encostando os dois pulsos com as mãos abertas, dedos esticados e polegares dobrados — as palmas na diagonal, criando uma analogia às asas de uma garça em vôo.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── ACDTC ─── -->
+  <section id="acdtc" class="section">
+    <div class="container">
+      <div class="acdtc-grid">
+        <div class="acdtc-text">
+          <h2 class="section-title">A Associação<span class="gold-bar"></span></h2>
+          <br>
+          <p>
+            A ACDTC foi criada em 2023 com a missão de ser a referência institucional do estilo Fei Hok Phai no Brasil, tendo como base a primeira academia de Kung Fu registrada do país.
+          </p>
+          <p>
+            A associação reúne mestres, professores, instrutores e alunos que compartilham um compromisso: transmitir o legado de Chiu Ping Lok com integridade, respeito e o sentido de família que o Grão-Mestre sempre cultivou entre seus praticantes.
+          </p>
+          <p>
+            Os praticantes do estilo são comumente chamados de <strong>irmãos</strong> entre si — um reflexo direto da filosofia de comunidade que o Mestre Lope deixou como herança.
+          </p>
+          <br>
+          <a href="#contato" class="btn btn-gold">Entre em contato</a>
+        </div>
+        <div class="acdtc-facts">
+          <div class="acdtc-fact"><strong>1969</strong><span>Fundação da Academia original</span></div>
+          <div class="acdtc-fact"><strong>2023</strong><span>Fundação da ACDTC</span></div>
+          <div class="acdtc-fact"><strong>+11</strong><span>Mestres oficiais do estilo</span></div>
+          <div class="acdtc-fact"><strong>8 AGO</strong><span>Dia Internacional do Fei Hok Phai</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FRASES ─── -->
+  <section id="frases" class="section">
+    <div class="container">
+      <h2 class="section-title">Mestre Lope em suas palavras<span class="gold-bar"></span></h2>
+      <p class="section-subtitle">O Grão-Mestre Chiu Ping Lok deixou mais do que um estilo — deixou uma filosofia de vida.</p>
+      <div class="frases-grid">
+
+        <div class="frase-card">
+          <span class="quote-icon">"</span>
+          <p>Uma disciplina milenar e testada pelo tempo como o Kung Fu não pode ser tratada como mercadoria.</p>
+          <span class="author">— Grão-Mestre Chiu Ping Lok</span>
+        </div>
+
+        <div class="frase-card">
+          <span class="quote-icon">"</span>
+          <p>Onde tem 3 pessoas juntas, sempre tem 3 mestres e 3 discípulos.</p>
+          <span class="author">— Grão-Mestre Chiu Ping Lok</span>
+        </div>
+
+        <div class="frase-card">
+          <span class="quote-icon">"</span>
+          <p>Hum... bom, mas pode melhorar! Tá bom né, mas precisa treinar mais.</p>
+          <span class="author">— Grão-Mestre Chiu Ping Lok</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTATO ─── -->
+  <section id="contato" class="section">
+    <div class="container">
+      <h2 class="section-title">Venha fazer parte<span class="gold-bar"></span></h2>
+      <p class="section-subtitle">Estamos em Santo André, SP. Entre em contato e comece sua jornada.</p>
+      <div class="contato-grid">
+        <div class="contato-info">
+          <h3>Onde nos encontrar</h3>
+          <div class="contato-item">
+            <div class="contato-item-icon">📍</div>
+            <div class="contato-item-text">
+              <strong>Endereço</strong>
+              <span>R. Santo André, 662 – Vila Assunção<br>Santo André – SP</span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-item-icon">📱</div>
+            <div class="contato-item-text">
+              <strong>WhatsApp / Telefone</strong>
+              <span><a href="https://wa.me/5511978657039">(11) 97865-7039</a></span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-item-icon">📸</div>
+            <div class="contato-item-text">
+              <strong>Instagram</strong>
+              <span><a href="https://instagram.com/academiataichi_oficial" target="_blank">@academiataichi_oficial</a></span>
+            </div>
+          </div>
+          <div class="contato-item">
+            <div class="contato-item-icon">🌐</div>
+            <div class="contato-item-text">
+              <strong>Facebook</strong>
+              <span><a href="https://facebook.com/AcademiaTaiChi" target="_blank">AcademiaTaiChi</a></span>
+            </div>
+          </div>
+          <div class="dia-int">
+            <strong>🗓 8 de Agosto</strong>
+            <p>Dia Internacional do Fei Hok Phai. Todos os praticantes e suas famílias são convidados a visitar a academia nesta data para celebrar o legado do Grão-Mestre Chiu Ping Lok.</p>
+          </div>
+        </div>
+        <div class="contato-form">
+          <h3>Envie uma mensagem</h3>
+          <form onsubmit="handleForm(event)">
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" placeholder="Seu nome" required />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label>
+              <input type="email" placeholder="seu@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Interesse</label>
+              <select>
+                <option value="">Selecione...</option>
+                <option>Kung Fu</option>
+                <option>Tai Chi Chuan</option>
+                <option>Dança do Leão / Dragão</option>
+                <option>Filiação à ACDTC</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mensagem</label>
+              <textarea placeholder="Conta um pouco sobre você e o que te trouxe até aqui..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-red" style="width:100%;text-align:center;">
+              Enviar mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <p>© 2024 <strong>ACDTC – Associação Cultural Desportiva Tai-Chi Chiu Ping Lok</strong></p>
+    <p style="margin-top:6px;">CNPJ: 53.020.709/0001-15 · Santo André, SP</p>
+    <div class="footer-links">
+      <a href="#sobre">A Associação</a>
+      <a href="#historia">História</a>
+      <a href="#estilo">O Estilo</a>
+      <a href="#frases">Mestre Lope</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    // Fecha menu ao clicar fora
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('mobileMenu');
+      const ham  = document.querySelector('.hamburger');
+      if (!menu.contains(e.target) && !ham.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+
+    // Nav scroll efeito
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 60) {
+        nav.style.borderBottom = '1px solid #1a1a1a';
+      } else {
+        nav.style.borderBottom = 'none';
+      }
+    });
+
+    // Form mock
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = '✓ Mensagem enviada!';
+      btn.style.background = '#DBB902';
+      btn.style.color = '#000';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Enviar mensagem';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+
+    // Animação suave de entrada nos elementos da timeline
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.tl-item, .estilo-card, .frase-card, .acdtc-fact').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .5s ease, transform .5s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
